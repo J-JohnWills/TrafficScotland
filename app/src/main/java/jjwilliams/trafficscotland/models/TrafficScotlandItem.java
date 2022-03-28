@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class TrafficScotlandItem {
 
-  private String item;
+  private String title;
   private String description;
   private String link;
   private TrafficScotlandCoordinates coordinates;
@@ -18,7 +18,7 @@ public class TrafficScotlandItem {
 
   // Constructors
   public TrafficScotlandItem() {
-    this.item = "";
+    this.title = "";
     this.description = "";
     this.link = "";
     this.coordinates = new TrafficScotlandCoordinates();
@@ -31,10 +31,10 @@ public class TrafficScotlandItem {
     type = TrafficScotlandType.ROADWORKS;
   }
 
-  public TrafficScotlandItem(String item, String description, String link,
+  public TrafficScotlandItem(String title, String description, String link,
                              TrafficScotlandCoordinates coordinates, Date datePublished,
                              Date startDate, Date endDate, TrafficScotlandType type) {
-    this.item = item;
+    this.title = title;
     this.description = description;
     this.link = link;
     this.coordinates = coordinates;
@@ -45,12 +45,12 @@ public class TrafficScotlandItem {
   }
 
   // Getters and setters
-  public String getItem() {
-    return item;
+  public String getTitle() {
+    return title;
   }
 
-  public void setItem(String item) {
-    this.item = item;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public String getDescription() {
@@ -113,7 +113,7 @@ public class TrafficScotlandItem {
   @Override
   public String toString() {
     return "TrafficScotlandItem{" +
-        "item='" + item + '\'' +
+        "title='" + title + '\'' +
         ", description='" + description + '\'' +
         ", link='" + link + '\'' +
         ", coordinates=" + coordinates +
