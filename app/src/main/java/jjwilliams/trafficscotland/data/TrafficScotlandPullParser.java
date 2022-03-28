@@ -18,8 +18,8 @@ import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
 
 public class TrafficScotlandPullParser {
-  private TrafficScotlandFeed trafficScotlandFeed;
-  private TrafficScotlandItem trafficScotlandItem;
+  private TrafficScotlandFeed trafficScotlandFeed = new TrafficScotlandFeed();
+  private TrafficScotlandItem trafficScotlandItem = new TrafficScotlandItem();
   private Scope scope;
   private InputStream inputStream;
 
