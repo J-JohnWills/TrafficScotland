@@ -10,6 +10,7 @@ public class TrafficScotlandFeed {
   private String description;
   private String link;
   private int ttl;
+  private TrafficScotlandType type;
   private ArrayList<TrafficScotlandItem> trafficScotlandItems;
 
   // Constructors
@@ -18,16 +19,19 @@ public class TrafficScotlandFeed {
     this.description = "";
     this.link = "";
     this.ttl = 0;
+    this.type = TrafficScotlandType.ROADWORKS;
     this.trafficScotlandItems = new ArrayList<>();
   }
 
   public TrafficScotlandFeed(String title, String description, String link,
-                             int ttl, ArrayList<TrafficScotlandItem> trafficScotlandItems) {
+                             int ttl, TrafficScotlandType type,
+                             ArrayList<TrafficScotlandItem> trafficScotlandItems) {
 
     this.title = title;
     this.description = description;
     this.link = link;
     this.ttl = ttl;
+    this.type = type;
     this.trafficScotlandItems = trafficScotlandItems;
   }
 
@@ -64,6 +68,14 @@ public class TrafficScotlandFeed {
     this.ttl = ttl;
   }
 
+  public TrafficScotlandType getType() {
+    return type;
+  }
+
+  public void setType(TrafficScotlandType type) {
+    this.type = type;
+  }
+
   public ArrayList<TrafficScotlandItem> getTrafficScotlandItems() {
     return trafficScotlandItems;
   }
@@ -89,3 +101,4 @@ public class TrafficScotlandFeed {
         '}';
   }
 }
+

@@ -14,7 +14,7 @@ public class TrafficScotlandItem {
   private Date datePublished;
   private Date startDate;
   private Date endDate;
-  private TrafficScotlandItemType type;
+  private TrafficScotlandType type;
 
   // Constructors
   public TrafficScotlandItem() {
@@ -28,12 +28,12 @@ public class TrafficScotlandItem {
     datePublished = today.getTime();
     startDate = today.getTime();
     endDate = today.getTime();
-    type = TrafficScotlandItemType.ROADWORKS;
+    type = TrafficScotlandType.ROADWORKS;
   }
 
   public TrafficScotlandItem(String item, String description, String link,
                              TrafficScotlandCoordinates coordinates, Date datePublished,
-                             Date startDate, Date endDate, TrafficScotlandItemType type) {
+                             Date startDate, Date endDate, TrafficScotlandType type) {
     this.item = item;
     this.description = description;
     this.link = link;
@@ -101,11 +101,11 @@ public class TrafficScotlandItem {
     this.endDate = endDate;
   }
 
-  public TrafficScotlandItemType getType() {
+  public TrafficScotlandType getType() {
     return type;
   }
 
-  public void setType(TrafficScotlandItemType type) {
+  public void setType(TrafficScotlandType type) {
     this.type = type;
   }
 
@@ -125,8 +125,3 @@ public class TrafficScotlandItem {
   }
 }
 
-enum TrafficScotlandItemType {
-  CURRENT_INCIDENT,
-  ROADWORKS,
-  PLANNED_ROADWORKS
-}
