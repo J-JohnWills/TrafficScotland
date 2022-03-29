@@ -68,10 +68,11 @@ public class TrafficScotlandPullParser {
                 }
                 break;
               case "description":
+                String description = xpp.nextText().replaceAll("<br />", "\\\n");
                 if (scope.equals(Scope.FEED)) {
-                  trafficScotlandFeed.setDescription(xpp.nextText());
+                  trafficScotlandFeed.setDescription(description);
                 } else {
-                  trafficScotlandItem.setDescription(xpp.nextText());
+                  trafficScotlandItem.setDescription(description);
                 }
                 break;
               case "link":
