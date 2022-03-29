@@ -28,6 +28,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import jjwilliams.trafficscotland.R;
+import jjwilliams.trafficscotland.adapters.HomeListAdapter;
 import jjwilliams.trafficscotland.data.TrafficScotlandPullParser;
 import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
@@ -41,6 +42,7 @@ public class HomeController extends Fragment {
   TrafficScotlandPullParser pullParser = new TrafficScotlandPullParser();
 
   private ListView listView;
+
 
 
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -72,42 +74,14 @@ public class HomeController extends Fragment {
       }
 
       handler.post(() -> {
-        ListAdapter adapter = new ListAdapter(this.getContext(), trafficScotlandFeed.getTrafficScotlandItems());
+//        ListAdapter adapter = new ListAdapter(this.getContext(), trafficScotlandFeed.getTrafficScotlandItems());
+//        listView.setAdapter(adapter);
+        HomeListAdapter adapter = new HomeListAdapter(this.getContext(), trafficScotlandFeed.getTrafficScotlandItems());
         listView.setAdapter(adapter);
       });
     });
   }
 
-  class ListAdapter extends ArrayAdapter<TrafficScotlandItem> {
-
-    private Context context;
-    private ArrayList<TrafficScotlandItem> trafficScotlandItems;
-
-    public ListAdapter(Context context, ArrayList<TrafficScotlandItem> trafficScotlandItems) {
-      super(context, R.layout.traffic_scotland_item_card, trafficScotlandItems);
-      this.context = context;
-      this.trafficScotlandItems = trafficScotlandItems;
-    }
-
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-      LayoutInflater inflater = (LayoutInflater) context.getApplicationContext()
-              .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-      View trafficScotlandItemCard = inflater.inflate(R.layout.traffic_scotland_item_card, parent,
-              false);
-      ImageView currentImage = trafficScotlandItemCard.findViewById(R.id.image);
-      TextView currentTitle = trafficScotlandItemCard.findViewById(R.id.textView1);
-      TextView currentDescription = trafficScotlandItemCard.findViewById(R.id.textView2);
-      TextView currentType = trafficScotlandItemCard.findViewById(R.id.home_card_type_text);
-
-      currentTitle.setText(trafficScotlandItems.get(position).getTitle());
-      currentDescription.setText(trafficScotlandItems.get(position).getDescription());
-
-      return trafficScotlandItemCard;
-    }
-  }
 
   @Override
   public void onDestroyView() {
