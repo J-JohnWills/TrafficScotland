@@ -9,9 +9,8 @@
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/home_button_group"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         app:layout_constraintTop_toTopOf="parent"
         >
 
@@ -19,18 +18,22 @@
             android:id="@+id/accident_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?attr/materialButtonOutlinedStyle"
+            android:textColor="?attr/colorPrimary"
             android:text="Accidents" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/roadworks_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?attr/materialButtonOutlinedStyle"
             android:text="Roadworks" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/planned_roadworks_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?attr/materialButtonOutlinedStyle"
             android:text="Planned" />
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
