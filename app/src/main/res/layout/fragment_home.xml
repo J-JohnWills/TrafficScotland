@@ -2,10 +2,38 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_contraint_layout"
+    android:id="@+id/home_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:padding="20dp">
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/home_button_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/accident_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accidents" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/roadworks_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Roadworks" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/planned_roadworks_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Planned" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -16,7 +44,7 @@
         app:endIconDrawable="@drawable/ic_dashboard_black_24dp"
         app:endIconMode="custom"
         app:errorEnabled="false"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/home_button_group">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/home_date_field"
