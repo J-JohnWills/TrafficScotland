@@ -87,9 +87,10 @@ public class HomeController extends Fragment {
     executor.execute(() -> {
       try {
         Connector connector = new Connector("https://trafficscotland.org/rss/feeds/roadworks.aspx");
-        InputStream inputStream = connector.getTrafficScotlandFeed();
-        pullParser.setInputStream(inputStream);
-        trafficScotlandFeed = pullParser.parseTrafficScotlandFeed();
+//        InputStream inputStream = connector.getTrafficScotlandFeed();
+//        pullParser.setInputStream(inputStream);
+//        trafficScotlandFeed = pullParser.parseTrafficScotlandFeed();
+        trafficScotlandFeed = connector.getTrafficScotlandFeed();
       } catch (Exception e) {
         e.printStackTrace();
       }

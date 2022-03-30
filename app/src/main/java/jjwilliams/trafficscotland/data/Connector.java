@@ -3,9 +3,13 @@ package jjwilliams.trafficscotland.data;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+
+import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
 
 public class Connector {
   private String url;
+  private TrafficScotlandFeed trafficScotlandFeed;
 
   public Connector(String url) {
     this.url = url;
@@ -15,7 +19,7 @@ public class Connector {
     return url;
   }
 
-  public InputStream getTrafficScotlandFeed() {
+  public TrafficScotlandFeed getTrafficScotlandFeed() {
 
     InputStream inputStream = null;
 
@@ -28,10 +32,16 @@ public class Connector {
       connection.setDoInput(true);
       connection.connect();
       inputStream = connection.getInputStream();
+
+      TrafficScotlandPullParser pullParser = new TrafficScotlandPullParser();
+      pullParser.setInputStream(inputStream);
+      trafficScotlandFeed = pullParser.parseTrafficScotlandFeed();
+
+      inputStream.close();
     } catch (Exception e) {
       e.printStackTrace();
     }
 
-    return inputStream;
+    return trafficScotlandFeed;
   }
 }
