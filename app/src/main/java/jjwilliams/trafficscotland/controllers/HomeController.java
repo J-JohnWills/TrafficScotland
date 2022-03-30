@@ -74,8 +74,6 @@ public class HomeController extends Fragment {
       }
 
       handler.post(() -> {
-//        ListAdapter adapter = new ListAdapter(this.getContext(), trafficScotlandFeed.getTrafficScotlandItems());
-//        listView.setAdapter(adapter);
         HomeListAdapter adapter = new HomeListAdapter(this.getContext(), trafficScotlandFeed.getTrafficScotlandItems());
         listView.setAdapter(adapter);
       });

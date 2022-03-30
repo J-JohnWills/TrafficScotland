@@ -12,13 +12,13 @@ import androidx.fragment.app.Fragment;
 
 import jjwilliams.trafficscotland.R;
 
-public class DashboardController extends Fragment {
+public class JourneyPlannerController extends Fragment {
 
 
   public View onCreateView(@NonNull LayoutInflater inflater,
                            ViewGroup container, Bundle savedInstanceState) {
 
-    View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+    View root = inflater.inflate(R.layout.fragment_journey_planner, container, false);
     return root;
   }
 

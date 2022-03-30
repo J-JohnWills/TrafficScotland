@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="jjwilliams.trafficscotland.controllers.DashboardController"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="jjwilliams.trafficscotland.controllers.LookupController"
+        android:label="@string/title_lookup"
+        tools:layout="@layout/fragment_lookup" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="jjwilliams.trafficscotland.controllers.NotificationsController"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="jjwilliams.trafficscotland.controllers.JourneyPlannerController"
+        android:label="@string/title_journey_planner"
+        tools:layout="@layout/fragment_journey_planner" />
 </navigation>

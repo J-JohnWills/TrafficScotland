@@ -12,13 +12,13 @@ import androidx.fragment.app.Fragment;
 
 import jjwilliams.trafficscotland.R;
 
-public class NotificationsController extends Fragment {
+public class LookupController extends Fragment {
 
 
   public View onCreateView(@NonNull LayoutInflater inflater,
                            ViewGroup container, Bundle savedInstanceState) {
 
-    View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+    View root = inflater.inflate(R.layout.fragment_lookup, container, false);
     return root;
   }
 
