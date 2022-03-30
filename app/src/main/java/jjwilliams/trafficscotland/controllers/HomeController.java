@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
@@ -29,6 +30,7 @@ import java.util.concurrent.Executors;
 
 import jjwilliams.trafficscotland.R;
 import jjwilliams.trafficscotland.adapters.HomeListAdapter;
+import jjwilliams.trafficscotland.data.Connector;
 import jjwilliams.trafficscotland.data.TrafficScotlandPullParser;
 import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
@@ -49,7 +51,8 @@ public class HomeController extends Fragment {
                            ViewGroup container, Bundle savedInstanceState) {
 
 
-    populateCards();
+//    populateCards();
+    connectorTest();
     View root = inflater.inflate(R.layout.fragment_home, container, false);
     listView = root.findViewById(R.id.home_list_view);
     return root;
@@ -74,6 +77,24 @@ public class HomeController extends Fragment {
       }
 
       handler.post(() -> {
+        HomeListAdapter adapter = new HomeListAdapter(this.getContext(), trafficScotlandFeed.getTrafficScotlandItems());
+        listView.setAdapter(adapter);
+      });
+    });
+  }
+
+  public void connectorTest() {
+    executor.execute(() -> {
+      try {
+        Connector connector = new Connector("https://trafficscotland.org/rss/feeds/roadworks.aspx");
+        InputStream inputStream = connector.getTrafficScotlandFeed();
+        pullParser.setInputStream(inputStream);
+        trafficScotlandFeed = pullParser.parseTrafficScotlandFeed();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+      handler.post(() ->{
         HomeListAdapter adapter = new HomeListAdapter(this.getContext(), trafficScotlandFeed.getTrafficScotlandItems());
         listView.setAdapter(adapter);
       });
