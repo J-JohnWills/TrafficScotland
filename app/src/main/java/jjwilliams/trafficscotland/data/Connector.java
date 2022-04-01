@@ -1,5 +1,7 @@
 package jjwilliams.trafficscotland.data;
 
+// Jamie Williams : S2029548
+
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;

@@ -1,5 +1,7 @@
 package jjwilliams.trafficscotland.adapters;
 
+// Jamie Williams : S2029548
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
