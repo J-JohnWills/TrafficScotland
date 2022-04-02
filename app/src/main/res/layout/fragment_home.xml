@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
-    android:paddingBottom="20dp"
-    android:paddingTop="10dp">
+    android:paddingTop="10dp"
+    android:paddingBottom="20dp">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_filter_by_date"
@@ -49,24 +49,27 @@
         android:id="@+id/home_toggle_button_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_select_incident_type"
         app:singleSelection="true">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRoadworks"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Roadworks" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPlanned"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Planned" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnIncidents"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
