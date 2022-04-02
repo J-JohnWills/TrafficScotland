@@ -85,9 +85,10 @@ public class TrafficScotlandPullParser {
               case "ttl":
                 trafficScotlandFeed.setTtl(Integer.parseInt(xpp.nextText()));
                 break;
-              case "pubDate":
+              case "pubdate":
                 try {
-                  Date date = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z").parse(xpp.nextText());
+                  Log.i("Inside pubdate", xpp.nextText());
+                  Date date = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH).parse(xpp.nextText());
                   trafficScotlandItem.setDatePublished(date);
                 } catch (Exception e) {
                   Log.e("Inside case 'pubdate'", "Error setting new date " + e.toString());
