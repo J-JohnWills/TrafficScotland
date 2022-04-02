@@ -8,6 +8,7 @@
     android:layout_gravity="center"
     android:elevation="6dp"
 
+
     app:cardBackgroundColor="@color/design_default_color_primary"
 
     app:cardCornerRadius="9dp">
@@ -62,6 +63,16 @@
                 android:textColor="#a9a9a9"
                 android:textSize="15sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewSeeMore"
+                android:layout_margin="5dp"
+                android:text="See more"
+                android:onClick="onClick"
+                android:clickable="true"
+                />
         </LinearLayout>
 
     </LinearLayout>
