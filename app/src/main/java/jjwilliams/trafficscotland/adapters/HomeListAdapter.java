@@ -18,6 +18,7 @@ import java.util.List;
 
 import jjwilliams.trafficscotland.R;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
+import jjwilliams.trafficscotland.models.TrafficScotlandType;
 
 public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
 
@@ -43,8 +44,22 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
     TextView currentDescription = trafficScotlandItemCard.findViewById(R.id.textView2);
     TextView currentType = trafficScotlandItemCard.findViewById(R.id.home_card_type_text);
 
+    if (trafficScotlandItems.get(position).getType() == TrafficScotlandType.ROADWORKS) {
+      currentImage.setImageResource(R.drawable.outline_route_2_24);
+      currentType.setText("Roadwork");
+    } else if (trafficScotlandItems.get(position).getType() == TrafficScotlandType.PLANNED_ROADWORKS) {
+      currentImage.setImageResource(R.drawable.ic_baseline_date_range_24);
+      currentType.setText("Planned");
+    } else if (trafficScotlandItems.get(position).getType() == TrafficScotlandType.CURRENT_INCIDENT) {
+      currentImage.setImageResource(R.drawable.ic_baseline_car_crash_24);
+      currentType.setText("Incident");
+    }
+
+
     currentTitle.setText(trafficScotlandItems.get(position).getTitle());
     currentDescription.setText(trafficScotlandItems.get(position).getDescription());
+
+
 
     return trafficScotlandItemCard;
   }

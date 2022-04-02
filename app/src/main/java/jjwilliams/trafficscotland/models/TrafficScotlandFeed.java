@@ -90,15 +90,17 @@ public class TrafficScotlandFeed {
   }
 
   // Debug
+
   @Override
   public String toString() {
     return "TrafficScotlandFeed{" +
-        "title='" + title + '\'' +
-        ", description='" + description + '\'' +
-        ", link='" + link + '\'' +
-        ", ttl=" + ttl +
-        ", trafficScotlandItems=" + trafficScotlandItems +
-        '}';
+            "title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", link='" + link + '\'' +
+            ", ttl=" + ttl +
+            ", type=" + type +
+            ", trafficScotlandItems=" + trafficScotlandItems +
+            '}';
   }
 }
 
