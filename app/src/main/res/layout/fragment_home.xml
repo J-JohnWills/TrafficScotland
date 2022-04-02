@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
+    android:paddingBottom="20dp"
     android:paddingTop="10dp">
 
     <com.google.android.material.textview.MaterialTextView
@@ -13,15 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Filter by date"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/home_date_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         app:endIconDrawable="@drawable/ic_dashboard_black_24dp"
         app:endIconMode="custom"
         app:errorEnabled="false"
@@ -37,6 +36,7 @@
             android:visibility="visible" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_select_incident_type"
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@+id/text_view_select_incident_type"
         app:singleSelection="true">
 
