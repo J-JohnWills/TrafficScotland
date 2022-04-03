@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:elevation="6dp"
     app:cardBackgroundColor="@color/md_theme_light_primary"
-    app:cardCornerRadius="20dp">
+    app:cardCornerRadius="25dp">
 
 
     <LinearLayout
@@ -19,12 +19,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingRight="12dp">
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:paddingRight="24dp">
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
@@ -43,7 +45,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/text_view_main_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -53,11 +55,21 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/text_view_start_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="Sub Title"
+                android:text="Start date"
+                android:textColor="#a9a9a9"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_view_end_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="End date"
                 android:textColor="#a9a9a9"
                 android:textSize="15sp"
                 android:textStyle="bold" />

@@ -14,11 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import jjwilliams.trafficscotland.R;
@@ -26,6 +24,8 @@ import jjwilliams.trafficscotland.models.TrafficScotlandItem;
 import jjwilliams.trafficscotland.models.TrafficScotlandType;
 
 public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
+
+  // TODO: remove the date stuff to DateHelper
 
   private Context context;
   private ArrayList<TrafficScotlandItem> trafficScotlandItems;
@@ -35,7 +35,7 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
 
   public HomeListAdapter(@NonNull Context context,
                          @NonNull ArrayList<TrafficScotlandItem> trafficScotlandItems) {
-    super(context, R.layout.traffic_scotland_item_card,trafficScotlandItems);
+    super(context, R.layout.traffic_scotland_item_card, trafficScotlandItems);
     this.context = context;
     this.trafficScotlandItems = trafficScotlandItems;
   }
@@ -44,13 +44,15 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
   @Override
   public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
     LayoutInflater inflater = (LayoutInflater) context.getApplicationContext()
-        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     View trafficScotlandItemCard = inflater.inflate(R.layout.traffic_scotland_item_card, parent,
-        false);
+            false);
     ImageView currentImage = trafficScotlandItemCard.findViewById(R.id.image);
-    TextView currentTitle = trafficScotlandItemCard.findViewById(R.id.textView1);
-    TextView currentDescription = trafficScotlandItemCard.findViewById(R.id.textView2);
+    TextView currentTitle = trafficScotlandItemCard.findViewById(R.id.text_view_main_title);
     TextView currentType = trafficScotlandItemCard.findViewById(R.id.home_card_type_text);
+    TextView currentStartDate = trafficScotlandItemCard.findViewById(R.id.text_view_start_date);
+    TextView currentEndDate = trafficScotlandItemCard.findViewById(R.id.text_view_end_date);
+
 
     TextView seeMore = trafficScotlandItemCard.findViewById(R.id.textViewSeeMore);
 
@@ -66,8 +68,11 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
     }
 
 
+
     currentTitle.setText(trafficScotlandItems.get(position).getTitle());
-    currentDescription.setText(trafficScotlandItems.get(position).getDescription());
+    currentStartDate.setText(dateFormat.format(trafficScotlandItems.get(position).getStartDate()));
+    currentEndDate.setText(dateFormat.format(trafficScotlandItems.get(position).getEndDate()));
+
 
     item = trafficScotlandItems.get(position);
 
@@ -82,7 +87,7 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
     AlertDialog alertDialog = new AlertDialog.Builder(this.getContext()).create();
     alertDialog.setTitle("Detailed Information");
     String temp = dateFormat.format(item.getDatePublished());
-    alertDialog.setMessage("Publish date: " + temp);
+    alertDialog.setMessage(item.getDescription());
     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Back", new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {
