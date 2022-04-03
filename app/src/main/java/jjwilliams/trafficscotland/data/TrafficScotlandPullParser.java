@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import jjwilliams.trafficscotland.helpers.DateHelpers;
 import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
 
@@ -22,11 +23,13 @@ public class TrafficScotlandPullParser {
   private TrafficScotlandItem trafficScotlandItem = new TrafficScotlandItem();
   private Scope scope;
   private InputStream inputStream;
+  DateHelpers dateHelpers = new DateHelpers();
 
 
   // Date stuff;
   SimpleDateFormat formatIn = new SimpleDateFormat("EEE, dd MMM yyy hh:mm:ss zzz", Locale.ENGLISH);
   SimpleDateFormat formatOut = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+
   public void setInputStream(InputStream inputStream) {
     this.inputStream = inputStream;
   }
@@ -77,6 +80,7 @@ public class TrafficScotlandPullParser {
                   trafficScotlandFeed.setDescription(description);
                 } else {
                   trafficScotlandItem.setDescription(description);
+                  dateHelpers.parseStartAndEndDate(description);
                 }
                 break;
               case "link":
@@ -94,13 +98,12 @@ public class TrafficScotlandPullParser {
                   String next = xpp.nextText();
                   Date dateTemp = formatIn.parse(next);
 
-                  String next2 = formatIn.format(dateTemp);
-                  dateTemp = formatIn.parse(next2);
+                  String next2 = formatOut.format(dateTemp);
+                  dateTemp = formatOut.parse(next2);
 
                   Log.i("Inside pubDate", "dateTemp is: " + dateTemp);
 
                   trafficScotlandItem.setDatePublished(dateTemp);
-
                 } catch (Exception e) {
                   Log.e("Inside case 'pubdate'", "Error setting new date " + e.toString());
                 }
@@ -118,7 +121,7 @@ public class TrafficScotlandPullParser {
             if (xpp.getName().equalsIgnoreCase("item") && scope == Scope.ITEM) {
               trafficScotlandFeed.addItems(trafficScotlandItem);
               trafficScotlandItem = new TrafficScotlandItem();
-              scope =  Scope.FEED;
+              scope = Scope.FEED;
             }
             break;
           default:
