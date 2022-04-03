@@ -57,43 +57,47 @@ public class DateHelpers {
     String startDateString;
     Date startDate = new Date();
 
-    try {
-      int startOfDate = description.indexOf(",");
-      int endOfDate = description.indexOf("-");
+    if (description.startsWith("Start Date")) {
+      try {
+        int startOfDate = description.indexOf(",");
+        int endOfDate = description.indexOf("-");
 
-      startDateString = description.substring(startOfDate + 2, endOfDate - 1);
+        startDateString = description.substring(startOfDate + 2, endOfDate - 1);
 
-      startDate = startEndDate.parse(startDateString);
+        startDate = startEndDate.parse(startDateString);
 
-      String startDateTemp = formatOut.format(startDate);
-      startDate = formatOut.parse(startDateTemp);
+        String startDateTemp = formatOut.format(startDate);
+        startDate = formatOut.parse(startDateTemp);
 
-      Log.i("DateLogic", "Start Date: " + startDateTemp);
-    } catch (Exception e) {
-      e.printStackTrace();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
     return startDate;
+
   }
 
   public Date parseEndDate(String description) {
     String endDateString;
     Date endDate = new Date();
 
-    try {
-      int startOfDate = description.indexOf(",", description.indexOf(",") +1);
-      int endOfDate = description.indexOf("-", description.indexOf("-") +1);
+    if (description.startsWith("Start Date")) {
+      try {
+        int startOfDate = description.indexOf(",", description.indexOf(",") + 1);
+        int endOfDate = description.indexOf("-", description.indexOf("-") + 1);
 
-      endDateString = description.substring(startOfDate + 2, endOfDate - 1);
+        endDateString = description.substring(startOfDate + 2, endOfDate - 1);
 
-      endDate = startEndDate.parse(endDateString);
+        endDate = startEndDate.parse(endDateString);
 
-      String startDateTemp = formatOut.format(endDate);
-      endDate = formatOut.parse(startDateTemp);
+        String startDateTemp = formatOut.format(endDate);
+        endDate = formatOut.parse(startDateTemp);
 
-      Log.i("DateLogic", "Start Date: " + startDateTemp);
-    } catch (Exception e) {
-      e.printStackTrace();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
+
     return endDate;
   }
 }

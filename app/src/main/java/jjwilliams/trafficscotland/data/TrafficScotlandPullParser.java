@@ -45,7 +45,6 @@ public class TrafficScotlandPullParser {
         switch (eventType) {
           case XmlPullParser.START_TAG:
             if (xpp.getName() != null) {
-              Log.i("START_TAG", xpp.getName());
             }
 
             switch (xpp.getName().toLowerCase()) {
@@ -94,7 +93,6 @@ public class TrafficScotlandPullParser {
                 try {
                   trafficScotlandItem.setDatePublished(dateHelpers.parseDate(xpp.nextText()));
                 } catch (Exception e) {
-                  Log.e("Inside case 'pubdate'", "Error setting new date " + e.toString());
                 }
                 break;
 
@@ -105,7 +103,6 @@ public class TrafficScotlandPullParser {
 
           case XmlPullParser.END_TAG:
             if (xpp.getName() != null) {
-              Log.i("END_TAG", xpp.getName());
             }
             if (xpp.getName().equalsIgnoreCase("item") && scope == Scope.ITEM) {
               trafficScotlandFeed.addItems(trafficScotlandItem);
@@ -115,7 +112,6 @@ public class TrafficScotlandPullParser {
             break;
           default:
             if (xpp.getName() != null) {
-              Log.i("???", xpp.getName());
             }
             break;
         }
