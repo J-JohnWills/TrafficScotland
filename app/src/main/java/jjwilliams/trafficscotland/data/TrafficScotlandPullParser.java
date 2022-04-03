@@ -23,6 +23,10 @@ public class TrafficScotlandPullParser {
   private Scope scope;
   private InputStream inputStream;
 
+
+  // Date stuff;
+  SimpleDateFormat formatIn = new SimpleDateFormat("EEE, dd MMM yyy hh:mm:ss zzz", Locale.ENGLISH);
+  SimpleDateFormat formatOut = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
   public void setInputStream(InputStream inputStream) {
     this.inputStream = inputStream;
   }
@@ -87,9 +91,16 @@ public class TrafficScotlandPullParser {
                 break;
               case "pubdate":
                 try {
-                  Log.i("Inside pubdate", xpp.nextText());
-                  Date date = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH).parse(xpp.nextText());
-                  trafficScotlandItem.setDatePublished(date);
+                  String next = xpp.nextText();
+                  Date dateTemp = formatIn.parse(next);
+
+                  String next2 = formatIn.format(dateTemp);
+                  dateTemp = formatIn.parse(next2);
+
+                  Log.i("Inside pubDate", "dateTemp is: " + dateTemp);
+
+                  trafficScotlandItem.setDatePublished(dateTemp);
+
                 } catch (Exception e) {
                   Log.e("Inside case 'pubdate'", "Error setting new date " + e.toString());
                 }

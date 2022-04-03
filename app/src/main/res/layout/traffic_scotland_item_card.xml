@@ -7,8 +7,8 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:elevation="6dp"
-    app:cardBackgroundColor="@color/design_default_color_primary"
-    app:cardCornerRadius="9dp">
+    app:cardBackgroundColor="@color/md_theme_light_primary"
+    app:cardCornerRadius="20dp">
 
 
     <LinearLayout
@@ -33,6 +33,7 @@
                 android:layout_height="match_parent"
                 android:text="Type"
                 android:textColor="#fff"
+                android:paddingLeft="7dp"
                 android:textSize="10sp" />
         </LinearLayout>
 

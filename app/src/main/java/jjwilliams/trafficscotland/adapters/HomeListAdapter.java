@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,9 +49,6 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
     TextView currentType = trafficScotlandItemCard.findViewById(R.id.home_card_type_text);
 
     TextView seeMore = trafficScotlandItemCard.findViewById(R.id.textViewSeeMore);
-
-
-
 
     if (trafficScotlandItems.get(position).getType() == TrafficScotlandType.ROADWORKS) {
       currentImage.setImageResource(R.drawable.outline_route_2_24);

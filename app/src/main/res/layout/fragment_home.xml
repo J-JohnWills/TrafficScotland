@@ -5,9 +5,7 @@
     android:id="@+id/home_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="20dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="20dp">
+    android:padding="20dp">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_filter_by_date"
