@@ -68,10 +68,15 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
     }
 
 
-
     currentTitle.setText(trafficScotlandItems.get(position).getTitle());
-    currentStartDate.setText(dateFormat.format(trafficScotlandItems.get(position).getStartDate()));
-    currentEndDate.setText(dateFormat.format(trafficScotlandItems.get(position).getEndDate()));
+
+    if (trafficScotlandItems.get(position).getType() != TrafficScotlandType.CURRENT_INCIDENT) {
+      currentStartDate.setText(dateFormat.format(trafficScotlandItems.get(position).getStartDate()));
+      currentEndDate.setText(dateFormat.format(trafficScotlandItems.get(position).getEndDate()));
+    } else {
+      currentStartDate.setText("Happening now");
+      currentEndDate.setText("");
+    }
 
 
     item = trafficScotlandItems.get(position);
