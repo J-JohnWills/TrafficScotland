@@ -16,8 +16,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import jjwilliams.trafficscotland.R;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
@@ -28,6 +30,8 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
   private Context context;
   private ArrayList<TrafficScotlandItem> trafficScotlandItems;
   private TrafficScotlandItem item;
+
+  SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
   public HomeListAdapter(@NonNull Context context,
                          @NonNull ArrayList<TrafficScotlandItem> trafficScotlandItems) {
@@ -77,7 +81,8 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
   private void onClick(View view) {
     AlertDialog alertDialog = new AlertDialog.Builder(this.getContext()).create();
     alertDialog.setTitle("Detailed Information");
-    alertDialog.setMessage("Publish date : " + item.getDatePublished());
+    String temp = dateFormat.format(item.getDatePublished());
+    alertDialog.setMessage("Publish date: " + temp);
     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Back", new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialogInterface, int i) {

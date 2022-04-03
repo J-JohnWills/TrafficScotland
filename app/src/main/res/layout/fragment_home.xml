@@ -7,41 +7,18 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/text_view_filter_by_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filter by date"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/home_date_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconDrawable="@drawable/ic_dashboard_black_24dp"
-        app:endIconMode="custom"
-        app:errorEnabled="false"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_filter_by_date">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/home_date_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Choose a date"
-            android:inputType="date"
-            android:singleLine="true"
-            android:visibility="visible" />
-    </com.google.android.material.textfield.TextInputLayout>
-
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_select_incident_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:paddingTop="20dp"
+        android:paddingBottom="10dp"
         android:text="Filter by type"
-        app:layout_constraintTop_toBottomOf="@+id/home_date_layout" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/home_toggle_button_group"

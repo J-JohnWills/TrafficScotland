@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:text="Type"
                 android:textColor="#fff"
-                android:paddingLeft="7dp"
+                android:paddingLeft="5dp"
                 android:textSize="10sp" />
         </LinearLayout>
 

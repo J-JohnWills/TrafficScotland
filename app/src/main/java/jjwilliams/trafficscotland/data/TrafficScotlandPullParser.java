@@ -10,9 +10,8 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 import jjwilliams.trafficscotland.helpers.DateHelpers;
 import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
@@ -24,11 +23,6 @@ public class TrafficScotlandPullParser {
   private Scope scope;
   private InputStream inputStream;
   DateHelpers dateHelpers = new DateHelpers();
-
-
-  // Date stuff;
-  SimpleDateFormat formatIn = new SimpleDateFormat("EEE, dd MMM yyy hh:mm:ss zzz", Locale.ENGLISH);
-  SimpleDateFormat formatOut = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
   public void setInputStream(InputStream inputStream) {
     this.inputStream = inputStream;
@@ -80,7 +74,10 @@ public class TrafficScotlandPullParser {
                   trafficScotlandFeed.setDescription(description);
                 } else {
                   trafficScotlandItem.setDescription(description);
-                  dateHelpers.parseStartAndEndDate(description);
+                  Date date = dateHelpers.parseStartDate(description);
+                  trafficScotlandItem.setStartDate(date);
+                  date = dateHelpers.parseEndDate(description);
+                  trafficScotlandItem.setEndDate(date);
                 }
                 break;
               case "link":
@@ -95,15 +92,7 @@ public class TrafficScotlandPullParser {
                 break;
               case "pubdate":
                 try {
-                  String next = xpp.nextText();
-                  Date dateTemp = formatIn.parse(next);
-
-                  String next2 = formatOut.format(dateTemp);
-                  dateTemp = formatOut.parse(next2);
-
-                  Log.i("Inside pubDate", "dateTemp is: " + dateTemp);
-
-                  trafficScotlandItem.setDatePublished(dateTemp);
+                  trafficScotlandItem.setDatePublished(dateHelpers.parseDate(xpp.nextText()));
                 } catch (Exception e) {
                   Log.e("Inside case 'pubdate'", "Error setting new date " + e.toString());
                 }

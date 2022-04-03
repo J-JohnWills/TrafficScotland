@@ -107,7 +107,6 @@ public class HomeController extends Fragment {
 
         trafficScotlandFeed = controller.getPlannedRoadworks();
         trafficScotlandItems.addAll(trafficScotlandFeed.getTrafficScotlandItems());
-
       } catch (Exception e) {
         e.printStackTrace();
       }

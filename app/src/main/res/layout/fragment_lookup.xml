@@ -7,15 +7,6 @@
     android:orientation="vertical"
     tools:context=".controllers.LookupController">
 
-    <TextView
-        android:id="@+id/show_selected_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="128dp"
-        android:text="Selected date is : "
-        android:textSize="18sp" />
-
     <Button
         android:id="@+id/pick_date_button"
         android:layout_width="wrap_content"
@@ -25,4 +16,15 @@
         android:text="Select date"
         android:textSize="18sp"
         app:icon="@drawable/ic_baseline_date_range_24" />
+
+    <TextView
+        android:id="@+id/show_selected_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="128dp"
+        android:text="Selected date is : "
+        android:textSize="18sp" />
+
+
 </LinearLayout>
