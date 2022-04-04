@@ -97,6 +97,8 @@ public class HomeController extends Fragment {
 
   public void connectorTest() {
     executor.execute(() -> {
+      // working out thread
+
       try {
         TrafficScotlandController controller = new TrafficScotlandController();
         trafficScotlandFeed = controller.getCurrentIncidents();
@@ -112,6 +114,7 @@ public class HomeController extends Fragment {
       }
 
       handler.post(() -> {
+        // Ui thread
         HomeListAdapter adapter = new HomeListAdapter(this.getContext(), trafficScotlandItems);
         listView.setAdapter(adapter);
       });

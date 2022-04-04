@@ -2,8 +2,6 @@ package jjwilliams.trafficscotland.helpers;
 
 // Jamie Williams : S2029548
 
-import android.util.Log;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -97,7 +95,8 @@ public class DateHelpers {
         e.printStackTrace();
       }
     }
-
     return endDate;
   }
+
+
 }
