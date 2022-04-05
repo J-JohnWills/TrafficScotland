@@ -111,7 +111,6 @@ public class HomeController extends Fragment {
         trafficScotlandFeed = controller.getPlannedRoadworks();
         trafficScotlandItems.addAll(trafficScotlandFeed.getTrafficScotlandItems());
 
-        Log.e("yo", trafficScotlandItems.toString());
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -119,8 +118,6 @@ public class HomeController extends Fragment {
       handler.post(() -> {
         HomeListAdapter adapter = new HomeListAdapter(this.getContext(), trafficScotlandItems);
         listView.setAdapter(adapter);
-//        TestAdapter testAdapter = new TestAdapter(this.getContext(), trafficScotlandItems);
-//        listView.setAdapter(testAdapter);
       });
     });
   }

@@ -3,6 +3,8 @@ package jjwilliams.trafficscotland.controllers;
 // Jamie Williams : S2029548
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,23 +22,39 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import jjwilliams.trafficscotland.adapters.HomeListAdapter;
+import jjwilliams.trafficscotland.data.TrafficScotlandController;
 import jjwilliams.trafficscotland.databinding.FragmentJourneyPlannerBinding;
 import jjwilliams.trafficscotland.R;
+import jjwilliams.trafficscotland.models.TrafficScotlandCoordinates;
+import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
+import jjwilliams.trafficscotland.models.TrafficScotlandItem;
 
-public class JourneyPlannerController extends Fragment implements OnMapReadyCallback{
+public class JourneyPlannerController extends Fragment implements OnMapReadyCallback {
 
   private GoogleMap googleMap;
+  private MapView mapView;
   private FragmentJourneyPlannerBinding binding;
-  private ViewSwitcher viewSwitcher;
   private Button view1Button, view2Button;
-  private RadioGroup mapTypeGroup;
-  private RadioButton normalButton, terrainButton, hybridButton, satelliteButton;
-  private CheckBox panZoomCheck;
+  private MarkerOptions markerOptions;
+  private ArrayList<LatLng> latLngs = new ArrayList<>();
+
+  ExecutorService executor = Executors.newSingleThreadExecutor();
+  Handler handler = new Handler(Looper.getMainLooper());
+
+  TrafficScotlandFeed trafficScotlandFeed = new TrafficScotlandFeed();
+  ArrayList<TrafficScotlandItem> trafficScotlandItems = new ArrayList<>();
 
 
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,35 +62,100 @@ public class JourneyPlannerController extends Fragment implements OnMapReadyCall
 
     View root = inflater.inflate(R.layout.fragment_journey_planner, container, false);
 
-    viewSwitcher = root.findViewById(R.id.journey_planner_view_switcher);
-    view1Button = root.findViewById(R.id.view_1_button_map_options);
-    view2Button = root.findViewById(R.id.view_2_button_go_to_map);
 
-    view1Button.setOnClickListener(view -> viewSwitcher.showNext());
+    // Google Map
+    MapsInitializer.initialize(this.getActivity());
+    mapView = root.findViewById(R.id.journey_planner_map_view);
+    mapView.onCreate(savedInstanceState);
+    mapView.getMapAsync(this);
 
-    view2Button.setOnClickListener(view -> viewSwitcher.showPrevious());
 
-    SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-            .findFragmentById(R.id.view_1_map_fragment);
-    mapFragment.getMapAsync(this);
+    connectorTest();
+
+
 
     return root;
   }
 
 
-  @Override
-  public void onDestroyView() {
-    super.onDestroyView();
-  }
-
+  // Maps methods
   @Override
   public void onMapReady(@NonNull GoogleMap googleMap) {
     this.googleMap = googleMap;
 
     // Add a marker in New Zealand
-    LatLng nz = new LatLng(-36.9, 174.8);
-    this.googleMap.addMarker(new MarkerOptions().position(nz).title("Marker in NZ"));
-    this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(nz));
+    LatLng uk = new LatLng(54, -3);
+
+    googleMap.moveCamera(CameraUpdateFactory.newLatLng(uk));
   }
 
+  public void addMarkers(ArrayList<LatLng> latLngs) {
+    googleMap.addMarker(new MarkerOptions().position(latLngs.get(0)));
+
+    for (LatLng item: latLngs) {
+      googleMap.addMarker(new MarkerOptions().position(item));
+    }
+  }
+
+  @Override
+  public void onResume() {
+    mapView.onResume();
+    super.onResume();
+  }
+
+  @Override
+  public void onPause() {
+    mapView.onPause();
+    super.onPause();
+  }
+
+  @Override
+  public void onDestroy() {
+    mapView.onDestroy();
+    super.onDestroy();
+  }
+
+  @Override
+  public void onLowMemory() {
+    mapView.onLowMemory();
+    super.onLowMemory();
+  }
+
+  @Override
+  public void onSaveInstanceState(Bundle state) {
+    super.onSaveInstanceState(state);
+    mapView.onSaveInstanceState(state);
+  }
+
+  public void connectorTest() {
+    executor.execute(() -> {
+      try {
+        TrafficScotlandController controller = new TrafficScotlandController();
+        trafficScotlandFeed = controller.getCurrentIncidents();
+        trafficScotlandItems.addAll(trafficScotlandFeed.getTrafficScotlandItems());
+
+        trafficScotlandFeed = controller.getRoadworks();
+        trafficScotlandItems.addAll(trafficScotlandFeed.getTrafficScotlandItems());
+
+        trafficScotlandFeed = controller.getPlannedRoadworks();
+        trafficScotlandItems.addAll(trafficScotlandFeed.getTrafficScotlandItems());
+
+        for (TrafficScotlandItem item : trafficScotlandItems) {
+          latLngs.add(item.getCoordinates());
+        }
+        Log.e("latLngs", latLngs.toString());
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+      handler.post(() -> {
+        addMarkers(latLngs);
+      });
+    });
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+  }
 }

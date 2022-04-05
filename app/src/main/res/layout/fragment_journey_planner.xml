@@ -1,99 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/journey_planner_view_switcher"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:padding="20dp"
     tools:context=".controllers.JourneyPlannerController">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/journey_planner_start_location_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/view_1_text_view_map_screen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Map Screen"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/view_1_button_map_options"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Go to map options screen"
-            android:textSize="20sp" />
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/view_1_map_fragment"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/journey_planner_edit_text_start"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/view_2_text_view_map_options_screen"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="20sp" />
+            android:hint="Choose something"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <RadioGroup
-            android:id="@+id/view_2_radio_group_map_type"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/journey_planner_end_location_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/journey_planner_start_location_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/journey_planner_edit_text_end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Choose something"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/journey_planner_button_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        app:layout_constraintTop_toBottomOf="@+id/journey_planner_end_location_layout" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        app:layout_constraintTop_toBottomOf="@id/journey_planner_button_search">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/journey_planner_map_view"
+            android:name="com.google.android.gms.maps.MapView"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_height="fill_parent" />
 
-            <RadioButton
-                android:id="@+id/radio_view_normal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Normal" />
 
-            <RadioButton
-                android:id="@+id/radio_view_terrain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Terrain" />
+    </androidx.cardview.widget.CardView>
 
-            <RadioButton
-                android:id="@+id/radio_view_satellite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Satellite" />
 
-            <RadioButton
-                android:id="@+id/radio_view_hybrid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hybrid" />
-
-        </RadioGroup>
-
-        <CheckBox
-            android:id="@+id/checkbox_pan_zoom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pan/Zoom" />
-
-        <Button
-            android:id="@+id/view_2_button_go_to_map"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Go to maps screen"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-</ViewSwitcher>
+</androidx.constraintlayout.widget.ConstraintLayout>
