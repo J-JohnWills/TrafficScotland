@@ -1,30 +1,107 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!--Jamie Williams : S2029548-->
+
+<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".controllers.LookupController">
+    android:id="@+id/lookup_view_switch"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <Button
-        android:id="@+id/pick_date_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        android:text="Select date"
-        android:textSize="18sp"
-        app:icon="@drawable/ic_baseline_date_range_24" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lookup_view1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".controllers.LookupController">
 
-    <TextView
-        android:id="@+id/show_selected_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="128dp"
-        android:text="Selected date is : "
-        android:textSize="18sp" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/lookup_text_view_filter_by_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Filter by date"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lookup_date_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconDrawable="@drawable/ic_baseline_date_range_24"
+            app:endIconMode="custom"
+            app:errorEnabled="false"
+            app:layout_constraintTop_toBottomOf="@+id/lookup_text_view_filter_by_date">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lookup_date_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Choose a date"
+                android:inputType="date"
+                android:singleLine="true"
+                android:visibility="visible" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/lookup_text_view_search_road"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Search for a road"
+            app:layout_constraintTop_toBottomOf="@+id/lookup_date_layout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lookup_search_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconDrawable="@drawable/outline_route_2_24"
+            app:endIconMode="custom"
+            app:errorEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/lookup_text_view_search_road">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lookup_search_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search for road"
+                android:inputType="text"
+                android:singleLine="true"
+                android:visibility="visible" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/lookup_button_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Search"
+            app:layout_constraintTop_toBottomOf="@+id/lookup_search_layout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lookup_view2"
+        >
 
 
-</LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lookup_button_return"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            app:icon="@drawable/ic_baseline_keyboard_return_24"
+            android:text="Back to search"
+            />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lookup_list_view"
+            app:layout_constraintTop_toBottomOf="@id/lookup_button_return"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ViewSwitcher>
+

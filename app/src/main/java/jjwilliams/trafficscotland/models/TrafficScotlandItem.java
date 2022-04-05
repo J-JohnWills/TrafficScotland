@@ -2,6 +2,8 @@ package jjwilliams.trafficscotland.models;
 
 // Jamie Williams : S2029548
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -69,12 +71,12 @@ public class TrafficScotlandItem {
     this.link = link;
   }
   // TODO: Refactor Coordinates
-  public TrafficScotlandCoordinates getCoordinates() {
-    return coordinates;
+  public LatLng getCoordinates() {
+    return coordinates.getCoordinates();
   }
 
-  public void setCoordinates(TrafficScotlandCoordinates coordinates) {
-    this.coordinates = coordinates;
+  public void setCoordinates(double latitude, double longitude) {
+    this.coordinates = new TrafficScotlandCoordinates(latitude, longitude);
   }
 
   public Date getDatePublished() {

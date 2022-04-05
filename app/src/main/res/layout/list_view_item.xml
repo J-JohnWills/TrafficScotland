@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/list_view_item_icon"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="6dp"
+        android:src="@drawable/ic_baseline_date_range_24"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="26dp"
+        android:id="@+id/list_view_item_title"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/list_view_item_icon"
+        android:ellipsize="marquee"
+        android:maxLines="1"
+        android:text="Title"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_view_item_description"
+        android:layout_above="@id/list_view_item_title"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/list_view_item_icon"
+        android:gravity="center_vertical"
+        android:text="Example Application"
+        android:textSize="16dp"
+        />
+</RelativeLayout>

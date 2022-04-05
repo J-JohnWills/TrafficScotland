@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 
 import jjwilliams.trafficscotland.R;
 import jjwilliams.trafficscotland.adapters.HomeListAdapter;
+import jjwilliams.trafficscotland.adapters.TestAdapter;
 import jjwilliams.trafficscotland.data.TrafficScotlandController;
 import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
@@ -109,14 +110,17 @@ public class HomeController extends Fragment {
 
         trafficScotlandFeed = controller.getPlannedRoadworks();
         trafficScotlandItems.addAll(trafficScotlandFeed.getTrafficScotlandItems());
+
+        Log.e("yo", trafficScotlandItems.toString());
       } catch (Exception e) {
         e.printStackTrace();
       }
 
       handler.post(() -> {
-        // Ui thread
         HomeListAdapter adapter = new HomeListAdapter(this.getContext(), trafficScotlandItems);
         listView.setAdapter(adapter);
+//        TestAdapter testAdapter = new TestAdapter(this.getContext(), trafficScotlandItems);
+//        listView.setAdapter(testAdapter);
       });
     });
   }

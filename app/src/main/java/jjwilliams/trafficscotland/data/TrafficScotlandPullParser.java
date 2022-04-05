@@ -54,9 +54,20 @@ public class TrafficScotlandPullParser {
               case "item":
                 scope = Scope.ITEM;
                 break;
-              case "point":
+              case "georss:point":
                 scope = Scope.COORDINATES;
                 // TODO: coordinated stuff
+                String latLng = xpp.nextText();
+                if (!latLng.isEmpty()) {
+                  String[] latLngs = latLng.split(" ");
+                  try {
+                    double lat = Double.parseDouble(latLngs[0]);
+                    double lng = Double.parseDouble(latLngs[1]);
+                    trafficScotlandItem.setCoordinates(lat, lng);
+                  } catch (Exception e) {
+                    e.printStackTrace();
+                  }
+                }
                 scope = Scope.ITEM;
                 break;
 

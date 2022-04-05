@@ -18,9 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import jjwilliams.trafficscotland.databinding.FragmentJourneyPlannerBinding;
 import jjwilliams.trafficscotland.R;
@@ -64,7 +67,12 @@ public class JourneyPlannerController extends Fragment implements OnMapReadyCall
 
   @Override
   public void onMapReady(@NonNull GoogleMap googleMap) {
+    this.googleMap = googleMap;
 
+    // Add a marker in New Zealand
+    LatLng nz = new LatLng(-36.9, 174.8);
+    this.googleMap.addMarker(new MarkerOptions().position(nz).title("Marker in NZ"));
+    this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(nz));
   }
 
 }

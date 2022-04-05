@@ -26,31 +26,6 @@ public class DateHelpers {
     return date;
   }
 
-  public ArrayList<Date> parseStartAndEndDate(String description) {
-
-    ArrayList<Date> dates = new ArrayList<>();
-    try {
-      String startDateSubString;
-      String endDateSubString;
-
-      // Get start date string
-      int startStart = description.indexOf(",");
-      int startEnd = description.indexOf("-");
-      startDateSubString = description.substring(startStart + 2, startEnd - 1);
-
-
-      // Get end date string
-      int endStart = description.indexOf(",", description.indexOf(",") + 1);
-      int endEnd = description.indexOf("-", description.indexOf("-") + 1);
-      endDateSubString = description.substring(endStart + 2, endEnd - 1);
-
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return dates;
-  }
-
   public Date parseStartDate(String description) {
     String startDateString;
     Date startDate = new Date();
@@ -97,6 +72,5 @@ public class DateHelpers {
     }
     return endDate;
   }
-
 
 }
