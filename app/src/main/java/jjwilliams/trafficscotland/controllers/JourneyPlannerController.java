@@ -69,10 +69,7 @@ public class JourneyPlannerController extends Fragment implements OnMapReadyCall
     mapView.onCreate(savedInstanceState);
     mapView.getMapAsync(this);
 
-
     connectorTest();
-
-
 
     return root;
   }
