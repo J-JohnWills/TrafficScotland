@@ -2,6 +2,7 @@ package jjwilliams.trafficscotland.helpers;
 
 // Jamie Williams : S2029548
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +25,28 @@ public class DateHelpers {
       e.printStackTrace();
     }
     return date;
+  }
+
+  public String pickerThing(String dateToParse) {
+    SimpleDateFormat badFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
+    SimpleDateFormat goodFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+
+    String returnDate = dateToParse;
+
+    Date date;
+    try {
+      date = badFormat.parse(dateToParse);
+      String temp = goodFormat.format(date);
+      date = goodFormat.parse(temp);
+      temp = goodFormat.format(date);
+      returnDate = temp;
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+
+
+    return returnDate;
+
   }
 
   public Date parseStartDate(String description) {

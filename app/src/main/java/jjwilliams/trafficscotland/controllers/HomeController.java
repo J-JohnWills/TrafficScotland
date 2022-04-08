@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +20,9 @@ import com.google.android.material.button.MaterialButtonToggleGroup;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 import jjwilliams.trafficscotland.R;
 import jjwilliams.trafficscotland.adapters.HomeListAdapter;
-import jjwilliams.trafficscotland.adapters.TestAdapter;
 import jjwilliams.trafficscotland.data.TrafficScotlandController;
 import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
@@ -47,13 +44,13 @@ public class HomeController extends Fragment {
 
     Context context = this.getContext();
 
-    connectorTest();
+    getFeeds();
 
     View root = inflater.inflate(R.layout.fragment_home, container, false);
     listView = root.findViewById(R.id.home_list_view);
     materialButtonToggleGroup = root.findViewById(R.id.home_toggle_button_group);
-    int buttonId = materialButtonToggleGroup.getCheckedButtonId();
-    MaterialButton button = materialButtonToggleGroup.findViewById(buttonId);
+//    int buttonId = materialButtonToggleGroup.getCheckedButtonId();
+//    MaterialButton button = materialButtonToggleGroup.findViewById(buttonId);
 
     materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
       @Override
@@ -90,13 +87,16 @@ public class HomeController extends Fragment {
             HomeListAdapter adapter = new HomeListAdapter(context, roadworks);
             listView.setAdapter(adapter);
           }
+        } else {
+          HomeListAdapter adapter = new HomeListAdapter(context, trafficScotlandItems);
+          listView.setAdapter(adapter);
         }
       }
     });
     return root;
   }
 
-  public void connectorTest() {
+  public void getFeeds() {
     executor.execute(() -> {
       // working out thread
 

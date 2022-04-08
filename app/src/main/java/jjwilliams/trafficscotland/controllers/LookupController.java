@@ -3,6 +3,7 @@ package jjwilliams.trafficscotland.controllers;
 // Jamie Williams : S2029548
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,12 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import jjwilliams.trafficscotland.R;
+import jjwilliams.trafficscotland.helpers.DateHelpers;
 import jjwilliams.trafficscotland.helpers.DatePickerHelper;
 
 public class LookupController extends Fragment {
 
+  DateHelpers dateHelpers = new DateHelpers();
 
   // Layout
   private ViewSwitcher viewSwitcher;
@@ -70,7 +73,7 @@ public class LookupController extends Fragment {
     datePicker.addOnPositiveButtonClickListener(selection -> {
       if (pickerHelper.validate(Long.parseLong(selection.toString()))) {
         String dateString = datePicker.getHeaderText();
-        dateInput.setText(dateString);
+        dateInput.setText(dateHelpers.pickerThing(dateString));
         // TODO: do stuff
 
       } else {

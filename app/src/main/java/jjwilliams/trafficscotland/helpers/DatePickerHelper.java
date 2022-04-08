@@ -47,10 +47,14 @@ public class DatePickerHelper {
 
   public String today() {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-//    dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
     Date today = Calendar.getInstance().getTime();
     return dateFormat.format(today);
   }
+
+//  public String selectedDate() {
+//    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+//    Date selectedDate =
+//  }
 
   public boolean validate(long dateToValidate) {
     return dateToValidate > startDate;
