@@ -46,7 +46,6 @@ public class DateHelpers {
 
 
     return returnDate;
-
   }
 
   public Date parseStartDate(String description) {
@@ -55,10 +54,7 @@ public class DateHelpers {
 
     if (description.startsWith("Start Date")) {
       try {
-        int startOfDate = description.indexOf(",");
-        int endOfDate = description.indexOf("-");
-
-        startDateString = description.substring(startOfDate + 2, endOfDate - 1);
+        startDateString = description.substring(description.indexOf(",") + 2, description.indexOf("-") - 1);
 
         startDate = startEndDate.parse(startDateString);
 
@@ -79,10 +75,9 @@ public class DateHelpers {
 
     if (description.startsWith("Start Date")) {
       try {
-        int startOfDate = description.indexOf(",", description.indexOf(",") + 1);
-        int endOfDate = description.indexOf("-", description.indexOf("-") + 1);
 
-        endDateString = description.substring(startOfDate + 2, endOfDate - 1);
+        endDateString = description.substring(description.indexOf(",", description.indexOf(",") + 1) + 2,
+                description.indexOf("-", description.indexOf("-") + 1) - 1);
 
         endDate = startEndDate.parse(endDateString);
 
