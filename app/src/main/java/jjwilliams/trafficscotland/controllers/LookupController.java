@@ -51,11 +51,11 @@ public class LookupController extends Fragment {
   // Layout
   private ViewSwitcher viewSwitcher;
   // View 1
-  private Button searchButton;
+  private Button searchButton, clearButton;
   private TextInputEditText dateInput, roadInput;
 
   // View 2
-  private Button returnbutton;
+  private Button returnButton;
   private ListView listView;
 
   // variables
@@ -76,11 +76,12 @@ public class LookupController extends Fragment {
     viewSwitcher = root.findViewById(R.id.lookup_view_switch);
     // View 1
     searchButton = root.findViewById(R.id.lookup_button_search);
+    clearButton = root.findViewById(R.id.lookup_button_clear);
     dateInput = root.findViewById(R.id.lookup_date_field);
     roadInput = root.findViewById(R.id.lookup_search_field);
 
     // View 2
-    returnbutton = root.findViewById(R.id.lookup_button_return);
+    returnButton = root.findViewById(R.id.lookup_button_return);
     listView = root.findViewById(R.id.lookup_list_view);
 
     // DatePicker
@@ -112,13 +113,11 @@ public class LookupController extends Fragment {
             listView.setAdapter(adapter);
           });
         });
-
         viewSwitcher.showNext();
-
       }
     });
 
-    returnbutton.setOnClickListener(view -> viewSwitcher.showPrevious());
+    returnButton.setOnClickListener(view -> viewSwitcher.showPrevious());
 
     dateInput.setOnClickListener(view -> datePicker.show(getParentFragmentManager(), "Date Picker"));
 
@@ -136,6 +135,12 @@ public class LookupController extends Fragment {
                 Toast.LENGTH_LONG);
         toast.show();
       }
+    });
+
+    // Reset the inputs on click
+    clearButton.setOnClickListener(view -> {
+      dateInput.setText(pickerHelper.today());
+      roadInput.setText("");
     });
     return root;
   }

@@ -37,18 +37,18 @@ public class TestAdapter extends ArrayAdapter<TrafficScotlandItem> {
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     View listViewItem = inflater.inflate(R.layout.list_view_item, parent, false);
-    ImageView icon = listViewItem.findViewById(R.id.list_view_item_icon);
-    TextView title = listViewItem.findViewById(R.id.list_view_item_title);
-
-    if (trafficScotlandItems.get(position).getType() == TrafficScotlandType.ROADWORKS) {
-      icon.setImageResource(R.drawable.outline_route_2_24);
-    } else if (trafficScotlandItems.get(position).getType() == TrafficScotlandType.PLANNED_ROADWORKS) {
-      icon.setImageResource(R.drawable.ic_baseline_date_range_24);
-    } else if (trafficScotlandItems.get(position).getType() == TrafficScotlandType.CURRENT_INCIDENT) {
-      icon.setImageResource(R.drawable.ic_baseline_car_crash_24);
-    }
-
-    title.setText(trafficScotlandItems.get(position).getTitle());
+//    ImageView icon = listViewItem.findViewById(R.id.list_view_item_icon);
+//    TextView title = listViewItem.findViewById(R.id.list_view_item_title);
+//
+//    if (trafficScotlandItems.get(position).getType() == TrafficScotlandType.ROADWORKS) {
+//      icon.setImageResource(R.drawable.outline_route_2_24);
+//    } else if (trafficScotlandItems.get(position).getType() == TrafficScotlandType.PLANNED_ROADWORKS) {
+//      icon.setImageResource(R.drawable.ic_baseline_date_range_24);
+//    } else if (trafficScotlandItems.get(position).getType() == TrafficScotlandType.CURRENT_INCIDENT) {
+//      icon.setImageResource(R.drawable.ic_baseline_car_crash_24);
+//    }
+//
+//    title.setText(trafficScotlandItems.get(position).getTitle());
 
     return listViewItem;
   }
