@@ -2,7 +2,10 @@ package jjwilliams.trafficscotland.controllers;
 
 // Jamie Williams : S2029548
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -10,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
+import java.net.NetworkInterface;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -44,13 +49,18 @@ public class HomeController extends Fragment {
 
     Context context = this.getContext();
 
-    getFeeds();
+    if (isInternetConnected()) {
+      getFeeds();
+    } else {
+      Toast toast = Toast.makeText(getContext(),
+              "Not connected, Please try again",
+              Toast.LENGTH_LONG);
+      toast.show();
+    }
 
     View root = inflater.inflate(R.layout.fragment_home, container, false);
     listView = root.findViewById(R.id.home_list_view);
     materialButtonToggleGroup = root.findViewById(R.id.home_toggle_button_group);
-//    int buttonId = materialButtonToggleGroup.getCheckedButtonId();
-//    MaterialButton button = materialButtonToggleGroup.findViewById(buttonId);
 
     materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
       @Override
@@ -120,6 +130,18 @@ public class HomeController extends Fragment {
         listView.setAdapter(adapter);
       });
     });
+  }
+
+  public boolean isInternetConnected() {
+    boolean isConnected = true;
+
+    ConnectivityManager connectivityManager = (ConnectivityManager) this.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+    @SuppressLint("MissingPermission") NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+    if (networkInfo == null || !networkInfo.isConnected() || !networkInfo.isAvailable()) {
+      return false;
+    }
+
+    return isConnected;
   }
 
   @Override

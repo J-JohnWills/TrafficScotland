@@ -10,10 +10,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Date;
 
-import jjwilliams.trafficscotland.helpers.DateHelpers;
+import jjwilliams.trafficscotland.helpers.DateHelper;
 import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
 
@@ -22,7 +21,7 @@ public class TrafficScotlandPullParser {
   private TrafficScotlandItem trafficScotlandItem = new TrafficScotlandItem();
   private Scope scope;
   private InputStream inputStream;
-  DateHelpers dateHelpers = new DateHelpers();
+  private DateHelper dateHelper = new DateHelper();
 
   public void setInputStream(InputStream inputStream) {
     this.inputStream = inputStream;
@@ -84,9 +83,9 @@ public class TrafficScotlandPullParser {
                   trafficScotlandFeed.setDescription(description);
                 } else {
                   trafficScotlandItem.setDescription(description);
-                  Date date = dateHelpers.parseStartDate(description);
+                  Date date = dateHelper.parseStartDate(description);
                   trafficScotlandItem.setStartDate(date);
-                  date = dateHelpers.parseEndDate(description);
+                  date = dateHelper.parseEndDate(description);
                   trafficScotlandItem.setEndDate(date);
                 }
                 break;
@@ -102,7 +101,7 @@ public class TrafficScotlandPullParser {
                 break;
               case "pubdate":
                 try {
-                  trafficScotlandItem.setDatePublished(dateHelpers.parseDate(xpp.nextText()));
+                  trafficScotlandItem.setDatePublished(dateHelper.parsePubDate(xpp.nextText()));
                 } catch (Exception e) {
                 }
                 break;

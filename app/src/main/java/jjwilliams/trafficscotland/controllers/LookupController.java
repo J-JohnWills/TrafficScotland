@@ -33,7 +33,7 @@ import java.util.concurrent.Executors;
 import jjwilliams.trafficscotland.R;
 import jjwilliams.trafficscotland.adapters.HomeListAdapter;
 import jjwilliams.trafficscotland.data.TrafficScotlandController;
-import jjwilliams.trafficscotland.helpers.DateHelpers;
+import jjwilliams.trafficscotland.helpers.DateHelper;
 import jjwilliams.trafficscotland.helpers.DatePickerHelper;
 import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
@@ -45,7 +45,7 @@ public class LookupController extends Fragment {
   Handler handler = new Handler(Looper.getMainLooper());
 
   TrafficScotlandFeed trafficScotlandFeed = new TrafficScotlandFeed();
-  DateHelpers dateHelpers = new DateHelpers();
+  DateHelper dateHelper = new DateHelper();
 
 
   // Layout
@@ -125,9 +125,9 @@ public class LookupController extends Fragment {
     datePicker.addOnPositiveButtonClickListener(selection -> {
       if (pickerHelper.validate(Long.parseLong(selection.toString()))) {
         String dateString = datePicker.getHeaderText();
-        dateInput.setText(dateHelpers.pickerThing(dateString));
+        dateInput.setText(dateHelper.parseDateFromPicker(dateString));
         // Saving the date for use in search
-        dateSelected = dateHelpers.pickerThing(dateString);
+        dateSelected = dateHelper.parseDateFromPicker(dateString);
 
 
       } else {
