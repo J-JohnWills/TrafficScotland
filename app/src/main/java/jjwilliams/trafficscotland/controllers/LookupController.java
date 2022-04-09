@@ -31,7 +31,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import jjwilliams.trafficscotland.R;
-import jjwilliams.trafficscotland.adapters.HomeListAdapter;
 import jjwilliams.trafficscotland.adapters.LookupListAdapter;
 import jjwilliams.trafficscotland.data.TrafficScotlandController;
 import jjwilliams.trafficscotland.helpers.DateHelper;
@@ -62,7 +61,7 @@ public class LookupController extends Fragment {
 
   // variables
   private String dateSelected;
-  private String roadSelected;
+  private String searchTerm;
   private final ArrayList<TrafficScotlandItem> trafficScotlandItems = new ArrayList<>();
   private ArrayList<TrafficScotlandItem> filteredItems = new ArrayList<>();
 
@@ -105,10 +104,10 @@ public class LookupController extends Fragment {
         } catch (Exception e) {
           e.printStackTrace();
         }
-        roadSelected = roadInput.getText().toString();
+        searchTerm = roadInput.getText().toString();
 
         executor.execute(() -> {
-          filterCurrentIncidentsAndRoadworks(dateSelected, roadSelected);
+          filterCurrentIncidentsAndRoadworks(dateSelected, searchTerm);
 
           handler.post(() -> {
 //            HomeListAdapter adapter = new HomeListAdapter(this.getContext(), filteredItems);
@@ -149,8 +148,8 @@ public class LookupController extends Fragment {
     return root;
   }
 
-  private void filterCurrentIncidentsAndRoadworks(String date, String road) {
-    Log.i("road is", road);
+  private void filterCurrentIncidentsAndRoadworks(String date, String searchTerm) {
+    Log.i("road is", searchTerm);
     // Empty filtered arrayList
     filteredItems.clear();
     Date dateToFilter = new Date();
@@ -171,7 +170,7 @@ public class LookupController extends Fragment {
       if (item.getStartDate().compareTo(dateToFilter) == 0 ||
               item.getEndDate().compareTo(dateToFilter) == 0 ||
               isInsideDate) {
-        if (item.getTitle().toLowerCase().contains(road.toLowerCase())) {
+        if (item.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
           filteredItems.add(item);
         }
       }
