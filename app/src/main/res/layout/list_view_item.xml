@@ -31,4 +31,10 @@
         android:text="End Date"
         android:textColor="@color/md_theme_light_primary" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_view_item_button_see_more"
+        android:text="See more"/>
+
 </LinearLayout>

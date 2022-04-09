@@ -32,6 +32,7 @@ import java.util.concurrent.Executors;
 
 import jjwilliams.trafficscotland.R;
 import jjwilliams.trafficscotland.adapters.HomeListAdapter;
+import jjwilliams.trafficscotland.adapters.LookupListAdapter;
 import jjwilliams.trafficscotland.data.TrafficScotlandController;
 import jjwilliams.trafficscotland.helpers.DateHelper;
 import jjwilliams.trafficscotland.helpers.DatePickerHelper;
@@ -53,6 +54,7 @@ public class LookupController extends Fragment {
   // View 1
   private Button searchButton, clearButton;
   private TextInputEditText dateInput, roadInput;
+  private ListView listView1;
 
   // View 2
   private Button returnButton;
@@ -68,7 +70,6 @@ public class LookupController extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater,
                            ViewGroup container, Bundle savedInstanceState) {
 
-
     getFeeds();
 
     View root = inflater.inflate(R.layout.fragment_lookup, container, false);
@@ -79,6 +80,7 @@ public class LookupController extends Fragment {
     clearButton = root.findViewById(R.id.lookup_button_clear);
     dateInput = root.findViewById(R.id.lookup_date_field);
     roadInput = root.findViewById(R.id.lookup_search_field);
+    listView1 = root.findViewById(R.id.lookup_list_view1);
 
     // View 2
     returnButton = root.findViewById(R.id.lookup_button_return);
@@ -109,8 +111,10 @@ public class LookupController extends Fragment {
           filterCurrentIncidentsAndRoadworks(dateSelected, roadSelected);
 
           handler.post(() -> {
-            HomeListAdapter adapter = new HomeListAdapter(this.getContext(), filteredItems);
-            listView.setAdapter(adapter);
+//            HomeListAdapter adapter = new HomeListAdapter(this.getContext(), filteredItems);
+//            listView1.setAdapter(adapter);
+            LookupListAdapter adapter1 = new LookupListAdapter(this.getContext(), filteredItems);
+            listView1.setAdapter(adapter1);
           });
         });
         viewSwitcher.showNext();
