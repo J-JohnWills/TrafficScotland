@@ -18,12 +18,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
@@ -183,21 +186,45 @@ public class JourneyPlannerController extends Fragment implements OnMapReadyCall
 
   public void addMarkers(ArrayList<LatLng> latLngs) {
     googleMap.clear();
-
-//    googleMap.addMarker(new MarkerOptions().position(latLngs.get(0)));
+    ArrayList<Marker> markers = new ArrayList<>();
 
     for (LatLng item : latLngs) {
       googleMap.addMarker(new MarkerOptions().position(item));
+      markers.add(googleMap.addMarker(new MarkerOptions().position(item)));
     }
+
+    LatLngBounds.Builder builder = new LatLngBounds.Builder();
+    for (Marker item: markers) {
+      builder.include(item.getPosition());
+    }
+    LatLngBounds bounds = builder.build();
+
+    int padding = 50;
+    CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+    googleMap.animateCamera(cu);
   }
 
+  // TODO: add catch for no included points
   private void addFilteredMarkers(ArrayList<TrafficScotlandItem> filteredItems) {
     googleMap.clear();
+    ArrayList<Marker> markers = new ArrayList<>();
 
     for (TrafficScotlandItem item: filteredItems) {
       LatLng latLng = item.getCoordinates();
-      googleMap.addMarker(new MarkerOptions().position(latLng).title("fuck"));
+      googleMap.addMarker(new MarkerOptions().position(latLng).title(item.getTitle()));
+      markers.add(googleMap.addMarker(new MarkerOptions().position(item.getCoordinates())));
     }
+    LatLngBounds.Builder builder = new LatLngBounds.Builder();
+    for (Marker item: markers) {
+      builder.include(item.getPosition());
+    }
+    LatLngBounds bounds = builder.build();
+
+    int padding = 75;
+    CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+    googleMap.animateCamera(cu);
 
   }
 
