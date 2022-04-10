@@ -1,6 +1,6 @@
 package jjwilliams.trafficscotland.adapters;
 
-import static jjwilliams.trafficscotland.R.layout.fragment_lookup;
+// Jamie Williams : S2029548
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,12 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -31,7 +29,6 @@ public class LookupListAdapter extends ArrayAdapter<TrafficScotlandItem> {
 
   private Context context;
   private ArrayList<TrafficScotlandItem> trafficScotlandItems;
-  private TrafficScotlandItem item;
 
   SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
@@ -108,12 +105,4 @@ public class LookupListAdapter extends ArrayAdapter<TrafficScotlandItem> {
 
     return trafficScotlandItemCard;
   }
-
-  public String durationColor(String stringToColor) {
-    String durationColored = "";
-
-
-    return durationColored;
-  }
-
 }

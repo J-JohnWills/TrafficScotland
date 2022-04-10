@@ -1,5 +1,7 @@
 package jjwilliams.trafficscotland;
 
+// Jamie Williams : S2029548
+
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
