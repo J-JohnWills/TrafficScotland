@@ -79,8 +79,6 @@ public class LookupController extends Fragment {
     listView1 = root.findViewById(R.id.lookup_list_view1);
 
     // View 2
-    returnButton = root.findViewById(R.id.lookup_button_return);
-    listView = root.findViewById(R.id.lookup_list_view);
 
     // DatePicker
     DatePickerHelper pickerHelper = new DatePickerHelper(dateInput);

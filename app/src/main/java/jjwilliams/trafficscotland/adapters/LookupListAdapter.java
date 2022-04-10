@@ -2,7 +2,9 @@ package jjwilliams.trafficscotland.adapters;
 
 import static jjwilliams.trafficscotland.R.layout.fragment_lookup;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +68,7 @@ public class LookupListAdapter extends ArrayAdapter<TrafficScotlandItem> {
       if (longDuration < 7) {
         duration.setTextColor(Color.GREEN);
         duration.append(trafficScotlandItems.get(position).getDuration() + " Days");
-      } else if (longDuration >= 7 && longDuration<=14) {
+      } else if (longDuration >= 7 && longDuration <= 14) {
         duration.setTextColor(0xffFF6600);
         duration.append(trafficScotlandItems.get(position).getDuration() + " Days");
       } else if (longDuration > 14) {
@@ -76,6 +78,7 @@ public class LookupListAdapter extends ArrayAdapter<TrafficScotlandItem> {
     } else {
       startDate.setText("Happening now!");
       endDate.setText("");
+      duration.setText("");
     }
 
     // Set icon and type text
@@ -91,7 +94,16 @@ public class LookupListAdapter extends ArrayAdapter<TrafficScotlandItem> {
     }
     // Onclick
     seeMore.setOnClickListener(view -> {
-
+      AlertDialog alertDialog = new AlertDialog.Builder(this.getContext()).create();
+      alertDialog.setTitle(trafficScotlandItems.get(position).getTitle());
+      alertDialog.setMessage(trafficScotlandItems.get(position).getDescription());
+      alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Back", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+          dialogInterface.dismiss();
+        }
+      });
+      alertDialog.show();
     });
 
     return trafficScotlandItemCard;

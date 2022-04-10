@@ -26,6 +26,7 @@ import java.util.concurrent.Executors;
 
 import jjwilliams.trafficscotland.R;
 import jjwilliams.trafficscotland.adapters.HomeListAdapter;
+import jjwilliams.trafficscotland.adapters.LookupListAdapter;
 import jjwilliams.trafficscotland.data.TrafficScotlandController;
 import jjwilliams.trafficscotland.helpers.DateHelper;
 import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
@@ -75,7 +76,7 @@ public class HomeController extends Fragment {
                 incidents.add(item);
               }
             }
-            HomeListAdapter adapter = new HomeListAdapter(context, incidents);
+            LookupListAdapter adapter = new LookupListAdapter(context, incidents);
             listView.setAdapter(adapter);
 
           } else if (checkedId == R.id.btnPlanned) {
@@ -85,7 +86,7 @@ public class HomeController extends Fragment {
                 planned.add(item);
               }
             }
-            HomeListAdapter adapter = new HomeListAdapter(context, planned);
+            LookupListAdapter adapter = new LookupListAdapter(context, planned);
             listView.setAdapter(adapter);
 
           } else if (checkedId == R.id.btnRoadworks) {
@@ -95,11 +96,11 @@ public class HomeController extends Fragment {
                 roadworks.add(item);
               }
             }
-            HomeListAdapter adapter = new HomeListAdapter(context, roadworks);
+            LookupListAdapter adapter = new LookupListAdapter(context, roadworks);
             listView.setAdapter(adapter);
           }
         } else {
-          HomeListAdapter adapter = new HomeListAdapter(context, trafficScotlandItems);
+          LookupListAdapter adapter = new LookupListAdapter(context, trafficScotlandItems);
           listView.setAdapter(adapter);
         }
       }
@@ -127,7 +128,7 @@ public class HomeController extends Fragment {
       }
 
       handler.post(() -> {
-        HomeListAdapter adapter = new HomeListAdapter(this.getContext(), trafficScotlandItems);
+        LookupListAdapter adapter = new LookupListAdapter(this.getContext(), trafficScotlandItems);
         listView.setAdapter(adapter);
       });
     });
