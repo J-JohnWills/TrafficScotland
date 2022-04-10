@@ -10,16 +10,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
         android:text="Title"
-        android:textColor="@color/md_theme_light_primary" />
+        android:textColor="@color/md_theme_light_primary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -42,12 +41,18 @@
                 android:textColor="@color/md_theme_light_primary" />
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:id="@+id/list_view_item_duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Duration: "
                 android:textColor="@color/md_theme_light_primary" />
+
+            <Button
+                android:id="@+id/list_view_item_button_see_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See more" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,21 +63,19 @@
 
             <ImageView
                 android:id="@+id/list_view_item_image_view_type"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="87dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="40dp"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
                 android:id="@+id/list_view_item_text_view_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
                 android:text="Type" />
 
-            <Button
-                android:id="@+id/list_view_item_button_see_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See more" />
+
         </LinearLayout>
 
     </LinearLayout>

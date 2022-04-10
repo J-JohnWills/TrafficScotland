@@ -3,6 +3,7 @@ package jjwilliams.trafficscotland.adapters;
 import static jjwilliams.trafficscotland.R.layout.fragment_lookup;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,19 @@ public class LookupListAdapter extends ArrayAdapter<TrafficScotlandItem> {
     if (trafficScotlandItems.get(position).getType() != TrafficScotlandType.CURRENT_INCIDENT) {
       startDate.append(dateFormat.format(trafficScotlandItems.get(position).getStartDate()));
       endDate.append(dateFormat.format(trafficScotlandItems.get(position).getEndDate()));
-      duration.append(trafficScotlandItems.get(position).getDuration() + " Days");
+
+      // TODO: make elegant and sexy
+      long longDuration = trafficScotlandItems.get(position).getDuration();
+      if (longDuration < 7) {
+        duration.setTextColor(Color.GREEN);
+        duration.append(trafficScotlandItems.get(position).getDuration() + " Days");
+      } else if (longDuration >= 7 && longDuration<=14) {
+        duration.setTextColor(0xffFF6600);
+        duration.append(trafficScotlandItems.get(position).getDuration() + " Days");
+      } else if (longDuration > 14) {
+        duration.setTextColor(Color.RED);
+        duration.append(trafficScotlandItems.get(position).getDuration() + " Days");
+      }
     } else {
       startDate.setText("Happening now!");
       endDate.setText("");

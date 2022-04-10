@@ -159,7 +159,8 @@ public class LookupController extends Fragment {
 
 
     for (TrafficScotlandItem item : trafficScotlandItems) {
-      boolean isInsideDate = item.getStartDate().before(dateToFilter) && item.getEndDate().after(dateToFilter);
+      boolean isInsideDate = item.getStartDate().before(dateToFilter) &&
+              item.getEndDate().after(dateToFilter);
 
       if (item.getStartDate().compareTo(dateToFilter) == 0 ||
               item.getEndDate().compareTo(dateToFilter) == 0 ||
