@@ -16,6 +16,7 @@ public class TrafficScotlandItem {
   private Date datePublished;
   private Date startDate;
   private Date endDate;
+  private long duration;
   private TrafficScotlandType type;
 
   // Constructors
@@ -30,12 +31,13 @@ public class TrafficScotlandItem {
     datePublished = today.getTime();
     startDate = today.getTime();
     endDate = today.getTime();
+    duration = 0;
     type = TrafficScotlandType.ROADWORKS;
   }
 
   public TrafficScotlandItem(String title, String description, String link,
                              TrafficScotlandCoordinates coordinates, Date datePublished,
-                             Date startDate, Date endDate, TrafficScotlandType type) {
+                             Date startDate, Date endDate, long duration, TrafficScotlandType type) {
     this.title = title;
     this.description = description;
     this.link = link;
@@ -43,6 +45,7 @@ public class TrafficScotlandItem {
     this.datePublished = datePublished;
     this.startDate = startDate;
     this.endDate = endDate;
+    this.duration = duration;
     this.type = type;
   }
 
@@ -70,6 +73,7 @@ public class TrafficScotlandItem {
   public void setLink(String link) {
     this.link = link;
   }
+
   // TODO: Refactor Coordinates
   public LatLng getCoordinates() {
     return coordinates.getCoordinates();
@@ -103,6 +107,14 @@ public class TrafficScotlandItem {
     this.endDate = endDate;
   }
 
+  public long getDuration() {
+    return duration;
+  }
+
+  public void setDuration(long duration) {
+    this.duration = duration;
+  }
+
   public TrafficScotlandType getType() {
     return type;
   }
@@ -115,15 +127,15 @@ public class TrafficScotlandItem {
   @Override
   public String toString() {
     return "TrafficScotlandItem{" +
-        "title='" + title + '\'' +
-        ", description='" + description + '\'' +
-        ", link='" + link + '\'' +
-        ", coordinates=" + coordinates +
-        ", datePublished=" + datePublished +
-        ", startDate=" + startDate +
-        ", endDate=" + endDate +
-        ", type=" + type +
-        '}';
+            "title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", link='" + link + '\'' +
+            ", coordinates=" + coordinates +
+            ", datePublished=" + datePublished +
+            ", startDate=" + startDate +
+            ", endDate=" + endDate +
+            ", type=" + type +
+            '}';
   }
 }
 

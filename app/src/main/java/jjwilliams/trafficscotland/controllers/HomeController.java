@@ -18,10 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
-import java.net.NetworkInterface;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -29,6 +27,7 @@ import java.util.concurrent.Executors;
 import jjwilliams.trafficscotland.R;
 import jjwilliams.trafficscotland.adapters.HomeListAdapter;
 import jjwilliams.trafficscotland.data.TrafficScotlandController;
+import jjwilliams.trafficscotland.helpers.DateHelper;
 import jjwilliams.trafficscotland.models.TrafficScotlandFeed;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
 import jjwilliams.trafficscotland.models.TrafficScotlandType;
@@ -40,6 +39,7 @@ public class HomeController extends Fragment {
 
   TrafficScotlandFeed trafficScotlandFeed = new TrafficScotlandFeed();
   ArrayList<TrafficScotlandItem> trafficScotlandItems = new ArrayList<>();
+  DateHelper dateHelper = new DateHelper();
 
   private ListView listView;
   MaterialButtonToggleGroup materialButtonToggleGroup;
@@ -57,6 +57,7 @@ public class HomeController extends Fragment {
               Toast.LENGTH_LONG);
       toast.show();
     }
+
 
     View root = inflater.inflate(R.layout.fragment_home, container, false);
     listView = root.findViewById(R.id.home_list_view);

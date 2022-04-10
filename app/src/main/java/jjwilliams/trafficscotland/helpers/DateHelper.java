@@ -2,9 +2,13 @@ package jjwilliams.trafficscotland.helpers;
 
 // Jamie Williams : S2029548
 
+import android.util.Log;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class DateHelper {
   private final SimpleDateFormat formatFromDescription = new SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH);
@@ -84,5 +88,13 @@ public class DateHelper {
       e.printStackTrace();
     }
     return returnDate;
+  }
+
+  // find duration between two dates
+  public long parseDuration(Date startDateIn, Date endDateIn) {
+
+    long diffInMills = Math.abs(endDateIn.getTime() - startDateIn.getTime());
+
+    return TimeUnit.DAYS.convert(diffInMills, TimeUnit.MILLISECONDS);
   }
 }

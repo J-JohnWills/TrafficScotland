@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import jjwilliams.trafficscotland.R;
+import jjwilliams.trafficscotland.helpers.DateHelper;
 import jjwilliams.trafficscotland.models.TrafficScotlandItem;
 import jjwilliams.trafficscotland.models.TrafficScotlandType;
 
@@ -32,6 +33,7 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
   private TrafficScotlandItem item;
 
   SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+  DateHelper dateHelper = new DateHelper();
 
   public HomeListAdapter(@NonNull Context context,
                          @NonNull ArrayList<TrafficScotlandItem> trafficScotlandItems) {
@@ -52,6 +54,7 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
     TextView currentType = trafficScotlandItemCard.findViewById(R.id.home_card_type_text);
     TextView currentStartDate = trafficScotlandItemCard.findViewById(R.id.text_view_start_date);
     TextView currentEndDate = trafficScotlandItemCard.findViewById(R.id.text_view_end_date);
+    TextView duration = trafficScotlandItemCard.findViewById(R.id.text_view_duration);
 
 
     TextView seeMore = trafficScotlandItemCard.findViewById(R.id.textViewSeeMore);
@@ -73,9 +76,11 @@ public class HomeListAdapter extends ArrayAdapter<TrafficScotlandItem> {
     if (trafficScotlandItems.get(position).getType() != TrafficScotlandType.CURRENT_INCIDENT) {
       currentStartDate.append(dateFormat.format(trafficScotlandItems.get(position).getStartDate()));
       currentEndDate.append(dateFormat.format(trafficScotlandItems.get(position).getEndDate()));
+      duration.append(trafficScotlandItems.get(position).getDuration() + " Days");
     } else {
       currentStartDate.setText("Happening now!");
       currentEndDate.setText("");
+      duration.setText("");
     }
 
 

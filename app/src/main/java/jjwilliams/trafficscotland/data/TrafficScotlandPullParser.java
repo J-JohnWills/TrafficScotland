@@ -87,6 +87,8 @@ public class TrafficScotlandPullParser {
                   trafficScotlandItem.setStartDate(date);
                   date = dateHelper.parseEndDate(description);
                   trafficScotlandItem.setEndDate(date);
+                  trafficScotlandItem.setDuration(dateHelper.parseDuration
+                          (trafficScotlandItem.getStartDate(), trafficScotlandItem.getEndDate()));
                 }
                 break;
               case "link":
