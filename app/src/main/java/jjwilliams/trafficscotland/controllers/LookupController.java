@@ -47,9 +47,6 @@ public class LookupController extends Fragment {
   TrafficScotlandFeed trafficScotlandFeed = new TrafficScotlandFeed();
   DateHelper dateHelper = new DateHelper();
 
-
-  // Layout
-  private ViewSwitcher viewSwitcher;
   // View 1
   private Button searchButton, clearButton;
   private TextInputEditText dateInput, roadInput;
@@ -71,9 +68,9 @@ public class LookupController extends Fragment {
 
     getFeeds();
 
-    View root = inflater.inflate(R.layout.fragment_lookup, container, false);
     // Layout
-    viewSwitcher = root.findViewById(R.id.lookup_view_switch);
+    View root = inflater.inflate(R.layout.fragment_lookup, container, false);
+
     // View 1
     searchButton = root.findViewById(R.id.lookup_button_search);
     clearButton = root.findViewById(R.id.lookup_button_clear);
@@ -116,11 +113,8 @@ public class LookupController extends Fragment {
             listView1.setAdapter(adapter1);
           });
         });
-        viewSwitcher.showNext();
       }
     });
-
-    returnButton.setOnClickListener(view -> viewSwitcher.showPrevious());
 
     dateInput.setOnClickListener(view -> datePicker.show(getParentFragmentManager(), "Date Picker"));
 
